@@ -2,8 +2,13 @@ from flask import Flask
 from flask import jsonify
 import Instagram
 import random as rd
+import logging
+import sys
 
 app = Flask(__name__)
+
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 
 @app.route("/instagram")
 def getInstaMeme():
@@ -28,4 +33,4 @@ def not_found(lol):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
